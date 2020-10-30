@@ -1,0 +1,60 @@
+body {
+  background: rgb(78, 156, 182);
+}
+
+// ul.result-list li span {
+//   display: block;
+// }
+
+#navbutton {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1em;
+}
+.navButtons_list-item {
+  margin: 1em;
+}
+
+ul {
+  list-style: none;
+}
+// li {
+
+// }
+.sub_buttons input:not([type="checkbox"]):not([type="radio"]) {
+  display: inline;
+}
+
+.sub_buttons {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 1em;
+}
+
+.sub_buttons input,
+.sub_buttons .card {
+  margin: 1em 1em 1em 0;
+}
+
+.card {
+  background: lightskyblue;
+  border: 1px solid lightgrey;
+  width: 120px;
+  text-overflow: ellipsis;
+
+  padding: 1.5em;
+  border-radius: 1em;
+}
+
+.card span {
+  display: block;
+}
+
+.card input {
+  margin-top: 1em;
+}
+
+.card.self {
+  background: lightgrey;
+}
