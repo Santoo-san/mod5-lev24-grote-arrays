@@ -1,54 +1,53 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Kies een kleur! eindopdracht color toggle</title>
-    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <title>level 24 random person data</title>
+    <link rel="stylesheet" type="text/css" href="./css/styles.css" />
+    <script defer src="./randomPersonData/randomPersonData.js"></script>
+    <script defer src="matchmaking.js"></script>
+    <script defer src="averageage.js"></script>
+    <script defer src="numberofpeople.js"></script>
+    <script defer src="creditcard.js"></script>
+    <script defer src="zodiac.js"></script>
     <script defer src="index.js"></script>
   </head>
 
-  <body class="white-background" id="bodyElement">
-    <header>
-      <div class="navbar">
-        <div class="dropdown" id="dropdown">
-          <img
-            class="hamburger"
-            src="hamburger_icon.svg.png"
-            width="40px"
-            alt="menu"
-          />
-          <ul class="dropdown-content remove" id="dropdown-content">
-            <h2 class="Welkom">Kies een kleur!</h2>
-            <li class="btn white-background" id="white">Wit</li>
-            <li class="btn red-background" id="red">Rood</li>
-            <li class="btn orange-background" id="orange">Oranje</li>
-            <li class="btn yellow-background" id="yellow">Geel</li>
-            <li class="btn green-background" id="green">Groen</li>
-            <li class="btn blue-background" id="blue">Blauw</li>
-            <li class="btn purple-background" id="purple">Paars</li>
-          </ul>
-        </div>
-      </div>
-    </header>
-    <main>
-      <article class="articleHeader">
-        <h2>
-          <iframe
-            src="https://giphy.com/embed/IB9foBA4PVkKA"
-            width="20"
-            height="20"
-            frameborder="0"
-            class="giphy-embed"
-          ></iframe>
-          Kies een kleur!
-          <iframe
-            src="https://giphy.com/embed/IB9foBA4PVkKA"
-            width="20"
-            height="20"
-            frameborder="0"
-            class="giphy-embed"
-          ></iframe>
-        </h2>
-      </article>
-    </main>
+  <body>
+    <h1>Filter and show Random Person Data</h1>
+
+    <div>
+      <h1>Filter de data</h1>
+      <ul id="navbutton" class="navButtons">
+        <li class="navButtons_list-item">
+          <button id="countrylist" class="navButton">landenlijst</button>
+        </li>
+        <li class="navButtons_list-item">
+          <button id="capricorn" class="navButton">steenbokvrouwen</button>
+        </li>
+        <li class="navButtons_list-item">
+          <button id="oldcreditcards" class="navButton">
+            ouwe creditcards
+          </button>
+        </li>
+        <li class="navButtons_list-item">
+          <button id="mostpeople" class="navButton">meeste mensen</button>
+        </li>
+        <li class="navButtons_list-item">
+          <button id="averageage" class="navButton">
+            gemiddelde leeftijd
+          </button>
+        </li>
+        <li class="navButtons_list-item">
+          <button id="matchmaking" class="navButton">matchmaking</button>
+        </li>
+      </ul>
+      <div class="sub_buttons"></div>
+      <h1>Resultaat:</h1>
+      <ul id="result-list">
+        <li class="result-list-item">Results</li>
+      </ul>
+
+      <button id="remove-all-button">Remove all results from the list</button>
+    </div>
   </body>
 </html>

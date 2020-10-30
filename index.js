@@ -1,116 +1,143 @@
-console.log("colorgame");
+console.log("beginning");
 
-const dropdownRemove = function () {
-  const dropdownRemoval = document.getElementById("dropdown-content");
-  dropdownRemoval.addEventListener("click", function () {
-    dropdownRemoval.classList.remove("remove"); //verwijdert de class remove waardoor de css hover niet meer geldig is en het menu weer naar rechts schuift
-    setTimeout(() => {
-      dropdownRemoval.classList.add("remove"); 
-    }, 300);// plaats aan het einde van de transition de class remove weer terug waardoor de hover weer werkt
+// general
+const removeAll = () => {
+  const allListItems = document.getElementById("result-list");
+  allListItems.querySelectorAll("*").forEach((n) => n.remove());
+};
+
+document
+  .getElementById("remove-all-button")
+  .addEventListener("click", removeAll);
+
+const emptyResultList = () =>
+  (document.getElementById("result-list").innerHTML = "");
+
+//countries
+const addCountriesToDom = (a) => {
+  a.forEach((b) => {
+    const listItem = document.createElement("li");
+    listItem.appendChild(document.createTextNode(b));
+    const list = document.getElementById("result-list");
+    list.appendChild(listItem);
+  });
+};
+const showAllCountries = () => {
+  emptyResultList();
+  emptyButtonList();
+  const countries = randomPersonData.map(
+    (randomPersonData) => randomPersonData.region
+  );
+  const sortedCountries = countries.sort();
+  const filteredCountries = Array.from(new Set(sortedCountries));
+  addCountriesToDom(filteredCountries);
+  return filteredCountries;
+};
+
+document
+  .getElementById("countrylist")
+  .addEventListener("click", showAllCountries);
+
+//capricorn
+const addCapricornsToDom = (capricornsAbovethirty) => {
+  const sortedCapricorns = capricornsAbovethirty.sort((a, b) => {
+    if (a.name < b.name) return -1;
+    else if (a.name > b.name) return 1;
+    else if (a.name == b.name) return 0;
+  });
+  capricornsAbovethirty.forEach((capricorn) => {
+    const listItem = document.createElement("li");
+    listItem.appendChild(
+      document.createTextNode(`hallo ${capricorn.name}, ${capricorn.surname}`)
+    );
+    const listImg = document.createElement("IMG");
+    listImg.src = capricorn.photo;
+    const list = document.getElementById("result-list");
+    list.appendChild(listItem);
+    listItem.appendChild(listImg);
   });
 };
 
-//coloring
-//white
+document
+  .getElementById("capricorn")
+  .addEventListener("click", showAllCapricornWomen);
 
-const addWhite = function () {
-  const bodyElement = document.body;
-  bodyElement.classList = "white-background";
-};
+//old creditcrads
 
-const attachWhite = function () {
-  const makeWhite = document.getElementById("white");
-  makeWhite.addEventListener("click", function () {
-    addWhite();
+const addExpiringCCToDom = (personsWithExpiringCreditcards) => {
+  personsWithExpiringCreditcards.forEach((creditcard) => {
+    const listItem = document.createElement("li");
+    listItem.appendChild(
+      document.createTextNode(
+        `Please ${creditcard.expiring_soon}  ${creditcard.name} ${creditcard.surname} telefoon: ${creditcard.phone} met ccnummer ${creditcard.credit_card.number} verloopt op ${creditcard.credit_card.expiration} `
+      )
+    );
+    const list = document.getElementById("result-list");
+    list.appendChild(listItem);
   });
 };
 
-//red
+const creditcards = randomPersonData.map(
+  (randomPersonData) => randomPersonData.credit_card.expiration
+);
 
-const addRed = function () {
-  const bodyElement = document.body;
-  bodyElement.classList = "red-background";
-};
+document
+  .getElementById("oldcreditcards")
+  .addEventListener("click", showExpiringCreditcards);
 
-const attachRed = function () {
-  const makeRed = document.getElementById("red");
-  makeRed.addEventListener("click", function () {
-    addRed();
+//most people per country
+
+const addCountrylistToDom = (countriesObj) => {
+  countriesObj.forEach((country) => {
+    const listItem = document.createElement("li");
+    listItem.appendChild(
+      document.createTextNode(`${country.population} live in ${country.name}`)
+    );
+    const list = document.getElementById("result-list");
+    list.appendChild(listItem);
   });
 };
 
-//orange
-const addOrange = function () {
-  const bodyElement = document.body;
-  bodyElement.classList = "orange-background";
+document
+  .getElementById("mostpeople")
+  .addEventListener("click", addPeopleToCountryList);
+
+//Average age
+const emptyButtonList = () =>
+  (document.querySelector(".sub_buttons").innerHTML = "");
+
+const addToButtonList = (button) =>
+  document.querySelector(".sub_buttons").appendChild(button);
+
+const getCountryButtonHTML = (country) => {
+  const button = document.createElement("input");
+  button.type = "button";
+  button.value = country;
+  button.addEventListener("click", displayAverageAgeForCountry);
+  return button;
 };
 
-const attachOrange = function () {
-  const makeOrange = document.getElementById("orange");
-  makeOrange.addEventListener("click", function () {
-    addOrange();
-  });
+const displayAverageAgeButtons = () => {
+  emptyResultList();
+  emptyButtonList();
+  getCountries(randomPersonData)
+    .map(getCountryButtonHTML)
+    .forEach(addToButtonList);
 };
 
-//yellow
-const addYellow = function () {
-  const bodyElement = document.body;
-  bodyElement.classList = "yellow-background";
+const displayAverageAgeForCountry = () => {
+  emptyResultList();
+  const country = event.target.value;
+  const average_age = calculateAverageAgeForCountry(country);
+  const listItem = document.createElement("li");
+  listItem.innerHTML = `The average age for ${country} is ${average_age}`;
+  const list = document.getElementById("result-list");
+  list.appendChild(listItem);
 };
 
-const attachYellow = function () {
-  const makeYellow = document.getElementById("yellow");
-  makeYellow.addEventListener("click", function () {
-    addYellow();
-  });
-};
+document
+  .getElementById("averageage")
+  .addEventListener("click", displayAverageAgeButtons);
 
-//green
-const addGreen = function () {
-  const bodyElement = document.body;
-  bodyElement.classList = "green-background";
-};
 
-const attachGreen = function () {
-  const makeGreen = document.getElementById("green");
-  makeGreen.addEventListener("click", function () {
-    addGreen();
-  });
-};
-
-//blue
-const addBlue = function () {
-  const bodyElement = document.body;
-  bodyElement.classList = "blue-background";
-};
-
-const attachBlue = function () {
-  const makeBlue = document.getElementById("blue");
-  makeBlue.addEventListener("click", function () {
-    addBlue();
-  });
-};
-
-//purple
-const addPurple = function () {
-  const bodyElement = document.body;
-  bodyElement.classList = "purple-background";
-};
-
-const attachPurple = function () {
-  const makePurple = document.getElementById("purple");
-  makePurple.addEventListener("click", function () {
-    addPurple();
-  });
-};
-
-// function calls
-
-dropdownRemove();
-attachWhite();
-attachRed();
-attachOrange();
-attachYellow();
-attachGreen();
-attachBlue();
-attachPurple();
+console.log("The End");
